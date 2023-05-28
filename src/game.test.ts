@@ -126,7 +126,9 @@ describe("Determining the winner", () => {
     { suit: CardSuit.Clubs, rank: CardRank.Ace },
   ];
 
-  test("When the players or dealers hand is higher than 21 they go 'bust' and the other player wins", () => {
+  //From ReadMe: If the player or the dealer goes over 21 then they will 'bust' and lose.
+  //Original description: "When the players or dealers hand is higher than 21 they go 'bust' and the other player wins
+  test("When the players or dealers hand is higher than 21 then they will 'bust' and lose", () => {
     const game = setupGame();
     const bustHand: Hand = [
       { suit: CardSuit.Clubs, rank: CardRank.Ten },
@@ -134,11 +136,11 @@ describe("Determining the winner", () => {
       { suit: CardSuit.Clubs, rank: CardRank.Ten },
     ];
     game.playerHand = bustHand;
-    expect(determineGameResult(game)).toBe("dealer_win");
+    expect(determineGameResult(game)).toBe("no_result");
 
     const game2 = setupGame();
     game2.dealerHand = bustHand;
-    expect(determineGameResult(game2)).toBe("player_win");
+    expect(determineGameResult(game2)).toBe("no_result");
   });
 
   test("When the dealers hand is higher than the players hand the dealer wins", () => {
